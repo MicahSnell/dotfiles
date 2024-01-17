@@ -1,0 +1,6 @@
+#!/bin/bash
+
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias make='make -j$(nproc)'
+alias ei='emacs -nw'
+alias ll='ls -l --color=auto'
