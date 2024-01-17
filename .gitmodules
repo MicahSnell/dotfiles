@@ -1,0 +1,3 @@
+[submodule ".config/xresources"]
+	path = .config/xresources
+	url = git@github.com:/janoamaral/Xresources-themes.git
