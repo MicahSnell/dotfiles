@@ -184,13 +184,11 @@ gaps top 52
 # start polybar
 exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 
-# always start spotify and chrome on specified workspaces
-for_window [class="(?i)spotify"] move container to workspace $ws2
-# for_window [class="^chrome-left$"] move container to workspace $ws3
-# for_window [class="^chrome-right$"] move container to workspace $ws4
+# arbitrary commands for specific windows
+for_window [class="(?i)spotify"] move container to workspace $ws3
 for_window [class="(?i)gnome-calculator"] floating enable
 
-# autostart apps on sign in
+# autostart applications on login
 exec --no-startup-id i3-msg 'workspace 1; exec emacs'
 exec --no-startup-id i3-msg 'workspace 2; exec urxvt -e tmux attach-session'
 exec --no-startup-id i3-msg 'workspace 3; exec spotify'
