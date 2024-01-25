@@ -1,10 +1,5 @@
 # .bashrc
 
-get_branch ()
-{
-  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -32,5 +27,5 @@ source ~/.config/aliases
 
 # environment variables
 export EDITOR="/usr/bin/emacs"
-export PS1="[\[\e[1;36m\]\u\[\e[0m\]@\[\e[1;33m\]\h\[\e[0m\] \W\[\e[31m\]\$(get_branch)\[\e[0m\]]\[\e[1;32m\]$\[\e[0m\] "
+export PS1="\[\e[1;33m\][\[\e[1;36m\]\w\[\e[1;33m\]]\[\e[1;32m\]$\[\e[0m\] "
 export HISTCONTROL=ignoreboth
