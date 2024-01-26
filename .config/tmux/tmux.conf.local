@@ -373,6 +373,9 @@ bind -r : resize-pane -R 2
 unbind >
 unbind <
 
+# use Enter to open command prompt
+unbind Enter
+bind Enter command-prompt
 
 # -- tpm -----------------------------------------------------------------------
 # whenever a plugin introduces a variable to be used in 'status-left' or
