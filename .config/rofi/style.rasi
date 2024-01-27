@@ -1,0 +1,56 @@
+* {
+  foreground: #f8f8f2;
+  background: #1e1f29;
+  background-alt: #343546;
+  color0: #000000;
+  color1: #ff5555;
+  color2: #50fa7b;
+  color3: #f1fa8c;
+  color4: #bd93f9;
+  color5: #ff79c6;
+  color6: #8be9fd;
+  color7: #bbbbbb;
+  color8: #555555;
+  color9: #ff5555;
+  color10: #50fa7b;
+  color11: #f1fa8c;
+  color12: #bd93f9;
+  color13: #ff79c6;
+  color14: #8be9fd;
+  color15: #ffffff;
+
+  text-color: @foreground;
+  background-color: @background;
+}
+
+window {
+  border: 1px;
+  border-radius: 6px;
+  border-color: @color8;
+  padding: 5px;
+}
+
+listview {
+  border: 2px 0px 0px;
+  border-color: @color5;
+}
+
+element-text {
+  padding: 0px 5px 0px;
+  highlight: @color3;
+}
+
+element-text.selected {
+  text-color: @color2;
+  background-color: @background-alt;
+}
+
+inputbar {
+  padding: 0px 5px 0px;
+  children: [ prompt, textbox-colon, entry ];
+}
+
+textbox-colon {
+  expand: false;
+  str: ": ";
+}
