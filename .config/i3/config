@@ -150,6 +150,12 @@ bindsym $mod+p exec flatpak run com.github.alainm23.planner
 # start resource monitor
 bindsym $mod+m exec flatpak run net.nokyan.Resources
 
+# start gimp
+bindsym $mod+g exec gimp
+
+# take screenshot using gimp
+bindsym $mod+Shift+g exec gimp --batch '(plug-in-screenshot RUN-INTERACTIVE FALSE 0 0 0 0 0)'
+
 # lock the screen
 bindsym $mod+i exec xscreensaver-command --lock
 
