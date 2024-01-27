@@ -192,6 +192,7 @@ exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 
 # arbitrary commands for specific windows
 for_window [class="(?i)spotify"] move container to workspace $ws3
+for_window [class="(?i)google-chrome"] move container to workspace $ws4
 for_window [class="(?i)gnome-calculator"] floating enable
 
 # autostart applications on login
