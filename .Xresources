@@ -1,6 +1,1 @@
-URxvt*font: xft:DejaVu Sans Mono:size=12, xft:Inconsolata:hinting=true:size=12, xft:Noto Sans Mono
-
-! v9.31 causes propmt to be in center of screen on startup, this fixes it
-URxvt*geometry: 400x400
-
 #include ".config/xresources/iterm-Dracula.Xresources"
