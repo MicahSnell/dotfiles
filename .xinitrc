@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# load .Xresources
-xrdb -load ~/.Xresources
+# load color theme
+update_theme.sh
 
 # disable the stupid bell
 xset b off
