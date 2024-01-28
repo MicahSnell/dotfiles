@@ -1,0 +1,9 @@
+[Unit]
+Description=Triggers update-theme service when Xresources file changes
+
+[Path]
+PathChanged=%h/.Xresources
+Unit=update-theme.service
+
+[Install]
+WantedBy=default.target

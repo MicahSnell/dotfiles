@@ -1,0 +1,8 @@
+[Unit]
+Description=Applies Xresources colors to various applications
+
+[Service]
+Type=simple
+Environment="HOME=%h"
+Environment="DISPLAY=:0"
+ExecStart=%h/.local/bin/update_theme.sh
