@@ -2,28 +2,27 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:/usr/local/go/bin" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:/usr/local/go/bin:$PATH"
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:/usr/local/go/bin" ]]; then
+  PATH="$HOME/.local/bin:$HOME/bin:/usr/local/go/bin:$PATH"
 fi
 export PATH
 
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
-		if [ -f "$rc" ]; then
-			. "$rc"
-		fi
-	done
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
 fi
 unset rc
 
 # source aliases
-source ~/.config/aliases
+source "$HOME/.config/aliases"
 
 # environment variables
 export EDITOR="/usr/bin/emacs"
