@@ -20,12 +20,13 @@
   (add-to-list 'load-path "~/.emacs.d/xresources-theme")
   (load-theme 'xresources t))
 
-;; no startup screen and no tool/menu bars
+;; no startup screen, no tool/menu bars, no scroll bars
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (tooltip-mode 0)
 (scroll-bar-mode 0)
+(fringe-mode 0)
 
 ;; show current row and column in status bar
 (setq line-number-mode t)
@@ -73,6 +74,12 @@
 ;; scroll line by line
 (setq scroll-step 1
       scroll-conservatively 10000)
+
+;; dont run ediff controls in a separate window
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; require confirmation before closing
+(setq confirm-kill-emacs 'y-or-n-p)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom functions
@@ -138,6 +145,7 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-d" 'delete-word)
 (global-set-key "\M-h" 'delete-backward-word)
+(global-set-key [f1] 'ispell-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; language specific settings
