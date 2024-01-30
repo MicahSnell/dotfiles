@@ -22,6 +22,9 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# dont wrap focus
+focus_wrapping no
+
 # program launcher
 bindsym $mod+d exec "rofi -modes 'run' -show run"
 
