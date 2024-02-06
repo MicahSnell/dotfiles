@@ -138,6 +138,7 @@
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
+(global-set-key [f1] 'ispell-buffer)
 (global-set-key "\C-c\C-d" 'duplicate-line)
 (global-set-key "\C-xn" 'my-next-window)
 (global-set-key "\C-xp" 'my-previous-window)
@@ -145,7 +146,7 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-d" 'delete-word)
 (global-set-key "\M-h" 'delete-backward-word)
-(global-set-key [f1] 'ispell-buffer)
+(global-set-key "\C-xri" 'string-insert-rectangle)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; language specific settings
