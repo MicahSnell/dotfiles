@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 8
+font pango:SourceCodePro 12
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- xscreensaver-command --lock
 

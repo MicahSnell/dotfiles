@@ -12,6 +12,7 @@
 ;; appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(set-frame-font "SourceCodePro 12" nil t)
 (setq frame-title-format (list "emacs@" system-name ": %b"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
