@@ -6,7 +6,7 @@ title="$(playerctl --player=spotify metadata title | sed 's/ -.*//; s/ (.*//')"
 if [ "$status" = "Playing" ]; then
   echo -e "♫ $title"
 elif [ "$status" = "Paused" ]; then
-  echo -e "\u25A0 $title"
+  echo -e "■ $title"
 else
   echo "idle"
 fi
