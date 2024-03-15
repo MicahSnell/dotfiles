@@ -1,6 +1,3 @@
-[submodule ".config/xresources"]
-	path = .config/xresources
-	url = git@github.com:/janoamaral/Xresources-themes.git
 [submodule ".emacs.d/go-mode"]
 	path = .emacs.d/go-mode
 	url = https://github.com/dominikh/go-mode.el.git
