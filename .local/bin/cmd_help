@@ -1,0 +1,43 @@
+#!/bin/bash
+
+usage ()
+{
+  cat <<EOF
+usage: $(basename $0) [-e] [-h]
+
+  show commands I rarely use, and typically forget
+
+options:
+  -h, --help  show this help message and exit
+  -e, --edit  opens the document for modification with ${EDITOR}
+EOF
+  exit 1
+}
+
+edit_document ()
+{
+  $EDITOR "$HOME/.local/bin/commands.txt"
+}
+
+show_document ()
+{
+  less "$HOME/.local/bin/commands.txt"
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -e|--edit)
+      edit_document
+      exit 0
+      ;;
+    -h|--help)
+      usage
+      ;;
+    *)
+      echo "Unknown option $1"
+      usage
+      ;;
+  esac
+done
+
+show_document

@@ -1,0 +1,79 @@
+# Create a new group
+$ sudo groupadd <group name>
+
+# Add a user to group
+$ sudo usermod -aG <group name> <user name>
+
+# Activate changes to groups without logout/in
+$ newgrp <group name>
+
+# List groups for a user
+$ groups
+$ id -Gn
+
+# create ssh key
+$ ssh-keygen -t ecdsa -b 521
+
+# enter new password for key
+$ ssh-keygen -p -f /path/to/private_key
+
+# copy to server
+$ ssh-copy-id -i /path/to/public_key user@host
+
+# list ssh keys that have been added
+$ ssh-add -l
+
+# delete keys from session
+$ ssh-add -d /path/to/key | -D <delete all>
+
+# set permission on .ssh
+$ chmod 700 .ssh
+
+# set permission on config
+$ chmod 600 .ssh/config
+
+# list drives with more info
+$ sudo fdisk -l
+
+# make a file system on a volume
+$ mkfs.<type> <path/to/volume>
+
+# update fontconfig cache, use sudo if installed at /usr/share/fonts
+$ fc-cache -fv
+
+# list all fonts
+$ fc-list
+
+# test font pattern formatting
+$ fc-match myfont:size=number
+
+# view the CUPS interface
+$ <web browser> http://localhost:631
+
+# add a printer, -p sets name, -E enables, -v sets ip addr: /ipp/print was assumed
+#   -m sets driver: everywhere works for most printers made after 2009, according to CUPS
+$ lpadmin -p <name of printer> -E -v ipp://<ip address of printer>/ipp/print -m everywhere
+
+# list available printers, -p for printers, -d for show default printer
+$ lpstat -p -d
+
+# print something
+$ lpr -P <name of printer> <filename>
+
+# specify page range
+$ lpr -P <name of printer> -o page-ranges=#-# <filename>
+
+# generate modeline for new resolution mode
+$ cvt <width> <height> <refresh rate>
+
+# create and add display mode for a monitor
+$ xrandr --newmode <monitor> "<width>x<height>_<refresh rate>.00" <modeline>
+$ xrandr --addmode <monitor> "<width>x<height>_<refresh rate>.00"
+
+# set display mode for monitor
+$ xrandr --output <monitor> --mode "<width>x<height>_<refresh rate>.00"
+$ xrandr --output <monitor> --mode "<width>x<height>_<refresh rate>.00" --left-of <other monitor>
+$ xrandr --output <monitor> --mode "<width>x<height>_<refresh rate>.00" --right-of <other monitor>
+
+# separate a range of pages from a pdf
+$ pdfseparate -f <start page, 1 if not given> -l <stop page, last if not given> <input.pdf> <output.pdf>
