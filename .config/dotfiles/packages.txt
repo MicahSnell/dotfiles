@@ -1,0 +1,10 @@
+i3
+polybar
+rofi
+kitty
+tmux
+gitmux
+feh
+picom
+playerctl
+pavucontrol
