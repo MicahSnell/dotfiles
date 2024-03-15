@@ -9,3 +9,4 @@ picom
 playerctl
 pavucontrol
 powerline-fonts
+diff-so-fancy
