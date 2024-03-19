@@ -29,5 +29,10 @@ export EDITOR="/usr/bin/emacs"
 export PS1="\[\e[1;33m\][\[\e[1;36m\]\w\[\e[1;33m\]]\[\e[1;32m\]$\[\e[0m\] "
 export HISTCONTROL=ignoreboth
 
+# source user service environment variables
+set -o allexport
+. ~/.config/environment.d/user_service_envvars.conf
+set +o allexport
+
 # keybindings
 bind '"\eh": backward-kill-word'
