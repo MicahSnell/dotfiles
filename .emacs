@@ -34,7 +34,7 @@
 (setq column-number-mode t)
 
 ;; show line numbers in all modes
-(global-display-line-numbers-mode)
+(global-display-line-numbers-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; behavior
@@ -51,6 +51,7 @@
 
 ;; use spaces instead of tabs for all buffers
 (setq-default indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 
 ;; wrap at 89 for all buffers
 (setq-default auto-fill-function 'do-auto-fill)
@@ -64,7 +65,7 @@
 (show-paren-mode t)
 
 ;; delete highlighted text
-(delete-selection-mode 1)
+(delete-selection-mode t)
 
 ;; delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -214,7 +215,7 @@
 
 ;; go mode
 (add-to-list 'load-path "~/.emacs.d/go-mode")
-(autoload 'go-mode "go-mode" nil t)
+(autoload 'go-mode "go-mode" "Go editing mode." t)
 
 ;; arduino mode
 (add-to-list 'load-path "~/.emacs.d/arduino-mode")
@@ -232,5 +233,5 @@
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled t)
+(put 'upcase-region 'disabled t)
