@@ -1,21 +1,20 @@
 #!/bin/bash
 
+# use .git file to determine where actual .git directory was written
 cd "$(dirname $0)"
+clonedToDir="$(realpath ../../)"
+gitDir="$(cat $clonedToDir/.git | awk '{print $NF}')"
 
-# copy archive contents to location of .git directory
-gitDir="$(cat ../../.git | cut -d ' ' -f2)"
-copyTo="$(dirname $gitDir)/"
-copyFrom="$(realpath ../../)/"
-echo "Copying the contents of $copyFrom to $copyTo"
-rsync --recursive --links --exclude ".git" --exclude README "$copyFrom" "$copyTo"
+# use git restore to "copy" archive contents at location of .git directory
+cd "$(dirname $gitDir)"
+echo "Initializing $gitDir"
+git --git-dir="$gitDir" --work-tree="$PWD" restore .
 
 # initialize submodules, don't show untracked files for the dotfiles repo
-echo "Initializing $gitDir"
-cd "$copyTo"
-git --git-dir="$gitDir" --work-tree="$copyTo" submodule update --init --recursive "$copyTo"
-git --git-dir="$gitDir" --work-tree="$copyTo" config status.showUntrackedFiles no
+git --git-dir="$gitDir" --work-tree="$PWD" submodule update --init --recursive
+git --git-dir="$gitDir" --work-tree="$PWD" config status.showUntrackedFiles no
 
-echo "Removing $copyFrom"
-rm -rf "$copyFrom"
+echo "Removing $clonedToDir"
+rm -rf "$clonedToDir"
 
 echo "Complete"
