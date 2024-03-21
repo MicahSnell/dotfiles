@@ -1,13 +1,3 @@
-(custom-set-variables
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-safe-themes
-   '("1436985fac77baf06193993d88fa7d6b358ad7d600c1e52d12e64a2f07f07176" default))
- '(package-selected-packages '(xresources-theme impatient-mode dracula-theme))
- '(tab-width 2)
- '(require-final-newline t)
- '(show-trailing-whitepsace t))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -70,6 +60,9 @@
 ;; delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; automatically add a newline at the end of a file when saved
+(setq require-final-newline t)
+
 ;; save backup files to ~/.emacs.d/saves
 (setq backup-directory-alist '(("." . "~/.emacs.d/saves")))
 
@@ -82,6 +75,13 @@
 
 ;; require confirmation before closing
 (setq confirm-kill-emacs 'y-or-n-p)
+
+;; write custom-save-variables to /dev/null
+(setq custom-file null-device)
+
+;; disable up/down case region functions
+(put 'downcase-region 'disabled t)
+(put 'upcase-region 'disabled t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom functions
@@ -225,6 +225,8 @@
 ;; packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq package-selected-packages '(xresources-theme impatient-mode))
+
 ;; use melpa
 (require 'package)
 (add-to-list 'package-archives
@@ -232,6 +234,3 @@
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
-
-(put 'downcase-region 'disabled t)
-(put 'upcase-region 'disabled t)
