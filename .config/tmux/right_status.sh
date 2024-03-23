@@ -8,11 +8,10 @@
 cd "$3" || exit 1
 gitInfo="$(gitmux -cfg ${HOME}/.config/tmux/gitmux.conf) "
 
-remoteHost="$(ps -t $1 -o ppid -o args 2>/dev/null | grep "$2 ssh" | grep -v grep | \
-              awk -F ' ' '{print $NF}')"
+remoteHost="$(ps -t $1 -o ppid,args 2>/dev/null | awk '/'"$2"' ssh/{print $NF}')"
 if [ -n "${remoteHost}" ]; then
-  hostName="$(ssh -G "${remoteHost}" | grep '^hostname ' | sed 's/.* //; s/\..*//')"
-  userName="$(ssh -G "${remoteHost}" | grep '^user ' | sed 's/.* //')"
+  hostName="$(ssh -G "${remoteHost}" | awk '/^hostname /{sub (/\..*/, ""); print $NF}')"
+  userName="$(ssh -G "${remoteHost}" | awk '/^user /{print $NF}')"
   gitInfo="#[bg=default]"
 else
   hostName="$(hostname)"
