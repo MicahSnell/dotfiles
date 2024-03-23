@@ -21,9 +21,6 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-# source aliases
-source "$HOME/.config/aliases"
-
 # environment variables
 export EDITOR="/usr/bin/emacs"
 export PS1="\[\e[1;33m\][\[\e[1;36m\]\w\[\e[1;33m\]]\[\e[1;32m\]$\[\e[0m\] "

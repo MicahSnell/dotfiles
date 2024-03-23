@@ -1,0 +1,13 @@
+# custom functions sourced by bash
+
+# prints git branch of current directory, if any
+get_branch() {
+  git branch 2>/dev/null | awk '/^\*/{printf " (%s)", $NF}'
+}
+
+# removes non-alphanumeric characters (except 'dot') from file/directory names
+unspace_names() {
+  for file in *; do
+    mv --interactive "${file}" "${file//[^[:alnum:]+\.]/}"
+  done
+}
