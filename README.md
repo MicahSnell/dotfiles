@@ -12,5 +12,5 @@ A script is provided to simplify copying files from the temporary directory. It 
 into the appropriate directories, initializes any submodules, and removes the temporary directory
 when finished.
 ```bash
-$ /tmp/dotfiles/.config/dotfiles/install.sh
+$ /tmp/dotfiles/.config/dotfiles/install
 ```
