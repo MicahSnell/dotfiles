@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# restarts polybar on each connected monitor
 
 POLYBAR="${HOME}/projects/opensource/polybar/build/bin"
 

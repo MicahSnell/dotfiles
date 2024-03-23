@@ -1,7 +1,8 @@
 #!/bin/bash
+#
+# displays or edits a text file of useful commands
 
-usage ()
-{
+usage() {
   cat <<EOF
 usage: $(basename $0) [-e] [-h]
 
@@ -14,14 +15,12 @@ EOF
   exit 1
 }
 
-edit_document ()
-{
-  $EDITOR "$HOME/.local/bin/commands.txt"
+edit_document() {
+  ${EDITOR} "${HOME}/.local/bin/commands.txt"
 }
 
-show_document ()
-{
-  less "$HOME/.local/bin/commands.txt"
+show_document() {
+  less "${HOME}/.local/bin/commands.txt"
 }
 
 while [[ $# -gt 0 ]]; do
