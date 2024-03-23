@@ -22,8 +22,15 @@ fi
 unset rc
 
 # environment variables
+if [ -z "${TMUX}" ]; then
+  export PS1="$(printf '%s' \
+             "\[\e[1;37m\][\[\e[1;34m\]\u\[\e[0m\]@\[\e[1;33m\]\h \[\e[1;36m\]\W" \
+             "\[\e[1;31m\]\$(get_branch)\[\e[1;37m\]]\[\e[1;32m\]$\[\e[0m\] ")"
+else
+  export PS1="\[\e[1;37m\][\[\e[1;36m\]\w\[\e[1;37m\]]\[\e[1;32m\]$\[\e[0m\] "
+fi
+
 export EDITOR="/usr/bin/emacs"
-export PS1="\[\e[1;33m\][\[\e[1;36m\]\w\[\e[1;33m\]]\[\e[1;32m\]$\[\e[0m\] "
 export HISTCONTROL=ignoreboth
 
 # source user service environment variables
