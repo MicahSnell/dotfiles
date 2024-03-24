@@ -2,16 +2,16 @@
 #
 # restarts polybar on each connected monitor
 
-POLYBAR="${HOME}/projects/opensource/polybar/build/bin"
+POLYBAR_DIR="/usr/bin"
 
 # Terminate already running bar instances
-${POLYBAR}/polybar-msg cmd quit
+${POLYBAR_DIR}/polybar-msg cmd quit
 
 if type "xrandr"; then
   for monitor in $(xrandr --query | grep " connected" | cut -d " " -f1); do
-    MONITOR="${monitor}" ${POLYBAR}/polybar \
-           --reload polybar 1>"/tmp/polybar-${monitor}.log" 2>&1 & disown
+    MONITOR="${monitor}" ${POLYBAR_DIR}/polybar \
+           --reload polybar 1>"/tmp/polybar-${USER}-${monitor}.log" 2>&1 & disown
   done
 else
-  ${POLYBAR}/polybar --reload polybar 1>/tmp/polybar.log 2>&1 & disown
+  ${POLYBAR_DIR}/polybar --reload polybar 1>"/tmp/polybar-${USER}.log" 2>&1 & disown
 fi
