@@ -5,11 +5,12 @@
 (set-frame-font "SourceCodePro 12" nil t)
 (setq frame-title-format (list "emacs@" system-name ": %b"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; xresources theme uses .Xresources to style emacs
-(if (not window-system)
-  (add-to-list 'load-path "~/.emacs.d/xresources-theme")
-  (load-theme 'xresources t))
+;; load xresources theme if in graphical frame, wombat otherwise
+(if (window-system)
+    (progn
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/xresources-theme")
+      (load-theme 'xresources t))
+  (load-theme 'wombat t))
 
 ;; no startup screen, no tool/menu bars, no scroll bars
 (setq inhibit-startup-screen t)
@@ -225,7 +226,7 @@
 ;; packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq package-selected-packages '(xresources-theme impatient-mode))
+(setq package-selected-packages '(impatient-mode))
 
 ;; use melpa
 (require 'package)
