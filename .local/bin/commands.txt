@@ -77,3 +77,6 @@ $ xrandr --output <monitor> --mode "<width>x<height>_<refresh rate>.00" --right-
 
 # separate a range of pages from a pdf
 $ pdfseparate -f <start page, 1 if not given> -l <stop page, last if not given> <input.pdf> <output.pdf>
+
+# print the definition of a bash function
+$ declare -f <function_name>
