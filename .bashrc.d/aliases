@@ -1,6 +1,9 @@
 # aliases sourced by bash
 
 alias dotfiles='git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}'
+source '/usr/share/bash-completion/completions/git'
+__git_complete dotfiles __git_main
+
 alias make='make -j$(nproc)'
 alias ei='emacs -nw'
 alias ll='ls -l --color=auto'
