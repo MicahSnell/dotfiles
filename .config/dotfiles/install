@@ -4,21 +4,50 @@
 #
 # args: none
 
+# print colorized success message
+success() {
+  echo -e "[ \e[1;32mSUCCESS\e[0m ] $@"
+}
+
+# print colorized failure message, and exits with return code 1
+failure() {
+  echo -e "[ \e[1;31mFAILURE\e[0m ] $@" >&2
+  exit 1
+}
+
 # use .git file to determine where actual .git directory was written
-cd "$(dirname $0)"
-clonedToDir="$(realpath ../../)"
-gitDir="$(cat ${clonedToDir}/.git | awk '{print $NF}')"
+get_dotfiles_directory() {
+  cd "$(dirname $0)"
+  clonedToDir="$(realpath ../../)"
+  if [[ "${clonedToDir}" == "${HOME}" ]]; then
+    failure "${clonedToDir} is the home directory, files already installed"
+  fi
 
-# use git restore to "copy" archive contents at location of .git directory
-cd "$(dirname ${gitDir})"
-echo "Initializing ${gitDir}"
-git --git-dir="${gitDir}" --work-tree="${PWD}" restore .
+  if ! [[ -f "${clonedToDir}/.git" ]]; then
+    failure "${clonedToDir}/.git does not exist"
+  fi
+  dotfilesDir="$(cat ${clonedToDir}/.git | awk '{print $NF}')"
+}
 
-# initialize submodules, don't show untracked files for the dotfiles repo
-git --git-dir="${gitDir}" --work-tree="${PWD}" submodule update --init --recursive
-git --git-dir="${gitDir}" --work-tree="${PWD}" config status.showUntrackedFiles no
+# use git restore to "copy" archive, init submodules, don't show untracked files
+setup_repo() {
+  cd "$(dirname ${dotfilesDir})"
+  echo "Initializing ${dotfilesDir}"
+  git --git-dir="${dotfilesDir}" --work-tree="${PWD}" restore .
+  git --git-dir="${dotfilesDir}" --work-tree="${PWD}" submodule update --init --recursive
+  git --git-dir="${dotfilesDir}" --work-tree="${PWD}" config status.showUntrackedFiles no
+  echo "${clonedToDir} can be deleted, run 'rm -rf ${clonedToDir}'"
+}
 
-echo "Removing ${clonedToDir}"
-rm -rf "${clonedToDir}"
+main() {
+  get_dotfiles_directory
+  setup_repo
+  success "installed repo contents at $(dirname ${dotfilesDir})"
+}
 
-echo "Complete"
+# call function given by $1 if it exists
+if declare -f "$1" >/dev/null; then
+  "$@"
+else
+  main "$@"
+fi
