@@ -6,11 +6,11 @@ Local configuration files and scripts, managed only with git. Inspired by
 When cloning, specify where the actual .git directory should be written and a directory to
 temporarily copy the repo into.
 ```bash
-$ git clone --separate-git-dir=$HOME/.dotfiles git@github.com:/MicahSnell/dotfiles /tmp/dotfiles
+$ git clone --separate-git-dir=$HOME/.dotfiles https://github.com/MicahSnell/dotfiles /tmp/dotfiles
 ```
 A script is provided to simplify copying files from the temporary directory. It clones the files
-into the appropriate directories, initializes any submodules, and removes the temporary directory
-when finished.
+into the appropriate directories, initializes any submodules, and sets config options for
+the repo.
 ```bash
 $ /tmp/dotfiles/.config/dotfiles/install
 ```
