@@ -73,11 +73,11 @@ setup_repo() {
 install_binaries() {
   if ! command -v kitty &>/dev/null; then
     curl --location https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    ln -sf "~/.local/kitty.app/bin/kitty" "~/.local/kitty.app/kitten" "~/.local/bin/"
+    ln -sf "${HOME}/.local/kitty.app/bin/kitty" "${HOME}/.local/kitty.app/kitten" \
+           "${HOME}/.local/bin/"
   fi
 
-  # if ! command -v gitmux &>/dev/null; then
-  if command -v gitmux &>/dev/null; then
+  if ! command -v gitmux &>/dev/null; then
     # get latest release options
     repo_info="$(curl --location --silent \
                    https://api.github.com/repos/arl/gitmux/releases/latest)"
@@ -116,7 +116,7 @@ main() {
 }
 
 # call function given by $1 if it exists
-if declare -f "$1" &>/dev/null; then
+if declare -f -- "$1" &>/dev/null; then
   "$@"
 else
   main "$@"
