@@ -72,9 +72,8 @@ setup_repo() {
 # install binaries locally, kitty and gitmux
 install_binaries() {
   if ! command -v kitty &>/dev/null; then
-    curl --location --silent https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    ln -sf "${HOME}/.local/kitty.app/bin/kitty" "${HOME}/.local/kitty.app/kitten" \
-           "${HOME}/.local/bin/"
+    curl --location --silent https://sw.kovidgoyal.net/kitty/installer.sh |
+      sh /dev/stdin >/dev/null 2>&1
   fi
 
   if ! command -v gitmux &>/dev/null; then
@@ -99,10 +98,16 @@ install_binaries() {
     curl --location --silent "${url}" -o "${versions[${ndx}]}"
     mkdir -p "${HOME}/.local/gitmux"
     tar xf "${versions[${ndx}]}" -C "${HOME}/.local/gitmux"
-    ln -sf "${HOME}/.local/gitmux/gitmux" "${HOME}/.local/bin/"
     rm "${versions[${ndx}]}"
-    success "installed gitmux"
   fi
+
+  # make symlinks for installed applications
+  apps=($(find "${HOME}"/.local/{kitty.app,gitmux} -type f -exec file -i '{}' \; |
+            grep executable | cut -d ':' -f 1))
+  for app in "${apps[@]}"; do
+    ln -sf "${app}" "${HOME}/.local/bin/"
+    success "installed $(basename ${app})"
+  done
 }
 
 main() {
