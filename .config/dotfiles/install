@@ -72,7 +72,7 @@ setup_repo() {
 # install binaries locally, kitty and gitmux
 install_binaries() {
   if ! command -v kitty &>/dev/null; then
-    curl --location https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    curl --location --silent https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     ln -sf "${HOME}/.local/kitty.app/bin/kitty" "${HOME}/.local/kitty.app/kitten" \
            "${HOME}/.local/bin/"
   fi
