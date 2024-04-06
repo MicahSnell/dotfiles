@@ -1,8 +1,19 @@
 #!/bin/bash
 #
-# copies git archive contents to .git directory location, and initializes submodules
-#
-# args: none
+# facilitates initial repo setup: file copy, submodule initialization, config options,
+# optional local install of some tools
+
+usage() {
+  cat <<-EOF
+usage: $0 [-i|--install] [-h|--help]
+
+copies git archive contents to .git directory location, and initializes submodules
+
+options:
+  -i, --install  perform local install of gitmux and kitty
+  -h, --help     show this help message and exit
+EOF
+}
 
 # print colorized success message
 success() {
@@ -13,6 +24,25 @@ success() {
 failure() {
   echo -e "[ \e[1;31mFAILURE\e[0m ] $@" >&2
   exit 1
+}
+
+parse_args() {
+  do_install="false"
+  while [[ $# -ne 0 ]]; do
+    case "$1" in
+      -i|--install)
+        do_install="true"
+        shift
+        ;;
+      -h|--help)
+        usage
+        exit 1
+        ;;
+      *)
+        usage
+        failure "unknown option: $1"
+    esac
+  done
 }
 
 # use .git file to determine where actual .git directory was written
@@ -39,14 +69,54 @@ setup_repo() {
   echo "${clonedToDir} can be deleted, run 'rm -rf ${clonedToDir}'"
 }
 
+# install binaries locally, kitty and gitmux
+install_binaries() {
+  if ! command -v kitty &>/dev/null; then
+    curl --location https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    ln -sf "~/.local/kitty.app/bin/kitty" "~/.local/kitty.app/kitten" "~/.local/bin/"
+  fi
+
+  # if ! command -v gitmux &>/dev/null; then
+  if command -v gitmux &>/dev/null; then
+    # get latest release options
+    repo_info="$(curl --location --silent \
+                   https://api.github.com/repos/arl/gitmux/releases/latest)"
+    versions=($(echo "${repo_info}" | jq --raw-output '.assets[].name' | grep gitmux))
+
+    # prompt user for desired version
+    for ndx in "${!versions[@]}"; do
+      printf '%s: %s\n' "${ndx}" "${versions[${ndx}]}"
+    done
+    read -p "Select index of version to install: " ndx
+    if [[ "${ndx}" -lt 0 ]] || [[ "${ndx}" -ge "${#versions[@]}" ]]; then
+      failure "invalid choice provided: ${ndx}"
+    fi
+
+    # download, extract, and link to local bin directory
+    url="$(echo ${repo_info} |
+             jq --raw-output --arg version ${versions[${ndx}]} \
+             '.assets[] | select(.name==$version) | .browser_download_url')"
+    curl --location --silent "${url}" -o "${versions[${ndx}]}"
+    mkdir -p "${HOME}/.local/gitmux"
+    tar xf "${versions[${ndx}]}" -C "${HOME}/.local/gitmux"
+    ln -sf "${HOME}/.local/gitmux/gitmux" "${HOME}/.local/bin/"
+    rm "${versions[${ndx}]}"
+    success "installed gitmux"
+  fi
+}
+
 main() {
+  parse_args "$@"
   get_dotfiles_directory
   setup_repo
+  if "${do_install}"; then
+    install_binaries
+  fi
   success "installed repo contents at $(dirname ${dotfilesDir})"
 }
 
 # call function given by $1 if it exists
-if declare -f "$1" >/dev/null; then
+if declare -f "$1" &>/dev/null; then
   "$@"
 else
   main "$@"
