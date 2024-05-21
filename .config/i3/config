@@ -160,7 +160,7 @@ bindsym $mod+g exec gimp
 bindsym $mod+Shift+g exec gimp --batch '(plug-in-screenshot RUN-INTERACTIVE FALSE 0 0 0 0 0)'
 
 # lock the screen
-bindsym $mod+i exec xscreensaver-command --lock
+bindsym $mod+i exec loginctl lock-session
 
 # open rarely used commands reference help
 bindsym $mod+Shift+h exec kitty cmd_help
