@@ -2,7 +2,15 @@
 ;; appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(set-frame-font "SourceCodePro 12" nil t)
+;; set first available font
+(cond
+ ((find-font (font-spec :name "Source Code Pro"))
+  (set-frame-font "Source Code Pro 12" nil t))
+ ((find-font (font-spec :name "DejaVu Sans Mono"))
+  (set-frame-font "DejaVu Sans Mono 12" nil t))
+  ((find-font (font-spec :name "Classic Console"))
+  (set-frame-font "Classic Console 18" nil t)))
+
 (setq frame-title-format (list "emacs@" system-name ": %b"))
 
 ;; load xresources theme if in graphical frame, wombat otherwise
