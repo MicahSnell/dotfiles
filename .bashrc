@@ -39,4 +39,6 @@ set -o allexport
 set +o allexport
 
 # keybindings
-bind '"\eh": backward-kill-word'
+if [ -t 1 ]; then
+  bind '"\eh": backward-kill-word'
+fi
