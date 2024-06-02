@@ -13,7 +13,7 @@ remoteHost=$(ps -t "$1" -o ppid,args 2>/dev/null |
                sed -e 's/\s\+\-\+[0-9A-Za-z]\+//g' \
                    -e 's/[0-9A-Za-z]\+@//' \
                    -e 's/[0-9A-Za-z]\+=[0-9A-Za-z]\+//g' |
-               awk '{print $3}' | tr -d '\n')
+               awk '{printf $3}')
 if [ -n "${remoteHost}" ]; then
   hostName="$(ssh -G "${remoteHost}" | awk '/^hostname /{sub (/\..*/, ""); print $NF}')"
   userName="$(ssh -G "${remoteHost}" | awk '/^user /{print $NF}')"
