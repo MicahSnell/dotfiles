@@ -176,9 +176,9 @@
   (cons "\\.js$" 'js-mode)
   (cons "\\.jsx$" 'js-mode)
   (cons "\\.css$" 'css-mode)
-	(cons "\\.qss$" 'css-mode)
+  (cons "\\.qss$" 'css-mode)
   (cons "\\.ino$" 'arduino-mode)
-	(cons "\\.pde$" 'arduino-mode)
+  (cons "\\.pde$" 'arduino-mode)
   (cons "\\.go$" 'go-mode))
   auto-mode-alist))
 
