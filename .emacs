@@ -88,9 +88,9 @@
 ;; write custom-save-variables to /dev/null
 (setq custom-file null-device)
 
-;; disable up/down case region functions
-(put 'downcase-region 'disabled t)
-(put 'upcase-region 'disabled t)
+;; don't disable up/down case region functions
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom functions
