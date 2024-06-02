@@ -143,6 +143,13 @@
   (interactive "p")
   (delete-word (- arg)))
 
+(defun insert-todo-comment ()
+  "Inserts a TODO comment"
+  (interactive)
+  (comment-indent)
+  (indent-for-tab-command)
+  (insert "TODO(mts): "))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key binds
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -158,6 +165,8 @@
 (global-set-key "\M-d" 'delete-word)
 (global-set-key "\M-h" 'delete-backward-word)
 (global-set-key "\C-xri" 'string-insert-rectangle)
+(global-unset-key "\C-xi")
+(global-set-key "\C-xit" 'insert-todo-comment)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; language specific settings
