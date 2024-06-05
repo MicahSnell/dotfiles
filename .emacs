@@ -185,6 +185,7 @@
     (split-window-right)
     (other-window 1)
     (call-interactively #'find-file)))
+(global-set-key "\C-xk" 'kill-buffer-and-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; language specific settings
