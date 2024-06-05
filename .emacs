@@ -167,6 +167,24 @@
 (global-set-key "\C-xri" 'string-insert-rectangle)
 (global-unset-key "\C-xi")
 (global-set-key "\C-xit" 'insert-todo-comment)
+(global-unset-key "\M-k")
+(global-unset-key "\M-l")
+(global-set-key "\M-j" 'windmove-left)
+(global-set-key "\M-k" 'windmove-up)
+(global-set-key "\M-l" 'windmove-down)
+(global-set-key "\M-;" 'windmove-right)
+(global-set-key "\M--"
+  (lambda ()
+    (interactive)
+    (split-window-below)
+    (other-window 1)
+    (call-interactively #'find-file)))
+(global-set-key "\M-\\"
+  (lambda ()
+    (interactive)
+    (split-window-right)
+    (other-window 1)
+    (call-interactively #'find-file)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; language specific settings
