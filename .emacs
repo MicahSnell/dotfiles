@@ -210,7 +210,8 @@
   (cons "\\.qss$" 'css-mode)
   (cons "\\.ino$" 'arduino-mode)
   (cons "\\.pde$" 'arduino-mode)
-  (cons "\\.go$" 'go-mode))
+  (cons "\\.go$" 'go-mode)
+  (cons "\\.todo$" 'org-mode))
   auto-mode-alist))
 
 ;; c++ mode
