@@ -19,7 +19,7 @@ if [ -n "${remoteHost}" ]; then
   userName="$(ssh -G "${remoteHost}" | awk '/^user /{print $NF}')"
   gitInfo="#[bg=default]"
 else
-  hostName="$(hostname)"
+  hostName="$(</etc/hostname)"
   userName="$(whoami)"
 fi
 
