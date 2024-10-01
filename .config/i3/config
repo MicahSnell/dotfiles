@@ -143,16 +143,16 @@ bindsym $mod+Return exec kitty
 bindsym $mod+e exec emacs
 
 # start calculator
-bindsym $mod+c exec gnome-calculator
+bindsym $mod+c exec xcalc
 
 # start planner
-bindsym $mod+p exec flatpak run net.cozic.joplin_desktop
+bindsym $mod+p exec joplin-desktop
 
 # start resource monitor
-bindsym $mod+m exec flatpak run net.nokyan.Resources
+bindsym $mod+m exec resources
 
-# start gimp
-bindsym $mod+g exec gimp
+# start chrome
+bindsym $mod+g exec google-chrome
 
 # take screenshot using gimp
 bindsym $mod+Shift+g exec gimp --batch '(plug-in-screenshot RUN-INTERACTIVE FALSE 0 0 0 0 0)'
@@ -163,14 +163,11 @@ bindsym $mod+i exec loginctl lock-session
 # open rarely used commands reference help
 bindsym $mod+Shift+h exec kitty cmd_help
 
-# screenshot entire window
-bindsym Print exec scrot $HOME/media/pictures/screenshots/`date +%Y-%m-%d_%H-%M-%S`.png
-
 # screenshot focused window
-bindsym $mod+Print exec scrot -u $HOME/media/pictures/screenshots/`date +%Y-%m-%d_%H-%M-%S`.png
+bindsym Print exec scrot -u $HOME/media/pictures/screenshots/`date +%Y-%m-%d_%H-%M-%S`.png
 
-# screenshot selected area
-bindsym $mod+Shift+Print exec scrot -s $HOME/media/pictures/screenshots/`date +%Y-%m-%d_%H-%M-%S`.png
+# screenshot entire window
+bindsym $mod+Print exec scrot $HOME/media/pictures/screenshots/`date +%Y-%m-%d_%H-%M-%S`.png
 
 # set workspace 1, 2, 3 for left and 4, 5, 6 for right monitors
 workspace $ws1 output DP-3
@@ -192,7 +189,7 @@ exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 for_window [class="(?i)spotify"] move container to workspace $ws3
 for_window [class="(?i)google-chrome"] move container to workspace $ws4
 for_window [class="(?i)joplin"] move container to workspace $ws6
-for_window [class="(?i)gnome-calculator"] floating enable
+for_window [class="(?i)xcalc"] floating enable
 
 # autostart applications on login
 exec --no-startup-id i3-msg 'workspace 1; exec emacs'
@@ -200,5 +197,5 @@ exec --no-startup-id i3-msg 'workspace 2; exec kitty tmux attach-session'
 exec --no-startup-id i3-msg 'workspace 3; exec spotify'
 exec --no-startup-id i3-msg 'workspace 4; exec google-chrome --new-window https://mail.google.com/mail/u/0/?ogbl#inbox'
 exec --no-startup-id i3-msg 'workspace 5; exec kitty tmux attach-session'
-exec --no-startup-id i3-msg 'workspace 6; exec flatpak run net.cozic.joplin_desktop'
+exec --no-startup-id i3-msg 'workspace 6; exec joplin-desktop'
 exec --no-startup-id i3-msg 'workspace 3; workspace 4'
