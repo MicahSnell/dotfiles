@@ -1,0 +1,6 @@
+set database sqlite
+
+map <C-v> scroll full-down
+map <A-v> scroll full-up
+map <C-n> scroll down
+map <C-p> scroll up
