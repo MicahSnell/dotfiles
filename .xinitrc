@@ -18,5 +18,5 @@ xscreensaver &
 # use picom for transparent windows
 picom -b
 
-# launch window manager with dbus
-exec dbus-launch --exit-with-session /usr/bin/i3
+# launch window manager
+exec /usr/bin/i3
