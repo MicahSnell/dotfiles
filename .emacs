@@ -35,6 +35,9 @@
 ;; show line numbers in all modes
 (global-display-line-numbers-mode t)
 
+;; display a solid line at fill column
+(global-display-fill-column-indicator-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; behavior
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
