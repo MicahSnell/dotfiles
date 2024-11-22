@@ -15,13 +15,22 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
+reset="\[\e[0m\]"
+red="\[\e[1;31m\]"
+green="\[\e[1;32m\]"
+yellow="\[\e[1;33m\]"
+blue="\[\e[1;34m\]"
+magenta="\[\e[1;35m\]"
+cyan="\[\e[1;36m\]"
+white="\[\e[1;37m\]"
+
 # export environment variables
-if [ -z "${TMUX}" ]; then
-  export PS1="$(printf '%s' \
-             "\[\e[1;37m\][\[\e[1;34m\]\u\[\e[0m\]@\[\e[1;33m\]\h \[\e[1;36m\]\W" \
-             "\[\e[1;31m\]\$(get_branch)\[\e[1;37m\]]\[\e[1;32m\]$\[\e[0m\] ")"
+if [[ "${TERM}" == "screen-256color" ]]; then
+  export PS1="${white}[${cyan}\w${red}\$(get_branch)${white}]${green}\$${reset} "
 else
-  export PS1="\[\e[1;37m\][\[\e[1;36m\]\w\[\e[1;37m\]]\[\e[1;32m\]$\[\e[0m\] "
+  export PS1="$(printf '%s' \
+             "${white}[${blue}\u${reset}@${yellow}\h ${cyan}\W" \
+             "${red}\$(get_branch)${white}]${green}\$${reset} ")"
 fi
 
 if ! [[ "${PATH}" =~ "${HOME}/.local/bin:${HOME}/bin" ]]; then
@@ -42,3 +51,6 @@ set +o allexport
 if [ -t 1 ]; then
   bind '"\eh": backward-kill-word'
 fi
+
+# 2 space tabs
+tabs -2
