@@ -35,21 +35,19 @@
 ;; show line numbers in all modes
 (global-display-line-numbers-mode t)
 
-;; display a solid line at fill column
-(global-display-fill-column-indicator-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; behavior
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; auto refresh emacs buffers when saved elsewhere to disk
 (global-auto-revert-mode t)
+(setq auto-revert-remote-files t)
 
 ;; take y or n instead of yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; dont wrap lines onto the same line but not
-(global-visual-line-mode t)
+(setq-default truncate-lines t)
 
 ;; use spaces instead of tabs for all buffers
 (setq-default indent-tabs-mode nil)
