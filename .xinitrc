@@ -16,7 +16,7 @@ xscreensaver &
 ~/.config/feh/fehbg
 
 # use picom for transparent windows
-picom -b
+picom --daemon --backend glx
 
 # launch window manager
 exec /usr/bin/i3
