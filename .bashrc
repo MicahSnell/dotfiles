@@ -47,10 +47,8 @@ set -o allexport
 . ~/.config/environment.d/user_service_envvars.conf
 set +o allexport
 
-# keybindings
+# keybindings, 2 space tabs
 if [ -t 1 ]; then
   bind '"\eh": backward-kill-word'
+  tabs -2
 fi
-
-# 2 space tabs
-tabs -2
