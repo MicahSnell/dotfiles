@@ -188,7 +188,6 @@ exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 
 # arbitrary commands for specific windows
 for_window [class="(?i)spotify"] move container to workspace $ws3
-for_window [class="(?i)google-chrome"] move container to workspace $ws4
 for_window [class="(?i)joplin"] move container to workspace $ws6
 for_window [class="(?i)xcalc"] floating enable
 
@@ -196,7 +195,7 @@ for_window [class="(?i)xcalc"] floating enable
 exec --no-startup-id i3-msg 'workspace 1; exec emacs'
 exec --no-startup-id i3-msg 'workspace 2; exec kitty tmux attach-session'
 exec --no-startup-id i3-msg 'workspace 3; exec spotify'
-exec --no-startup-id i3-msg 'workspace 4; exec google-chrome --new-window https://mail.google.com/mail/u/0/?ogbl#inbox'
+exec --no-startup-id i3-msg 'workspace 4; exec firefox https://mail.google.com/mail/u/0/?ogbl#inbox'
 exec --no-startup-id i3-msg 'workspace 5; exec kitty tmux attach-session'
 exec --no-startup-id i3-msg 'workspace 6; exec joplin-desktop'
 exec --no-startup-id i3-msg 'workspace 3; workspace 4'
