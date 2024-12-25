@@ -57,8 +57,9 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# toggle tiling / floating, shrink windows slightly when floated
+bindsym $mod+Shift+space "floating toggle"
+for_window [floating] resize set 90 ppt 90 ppt, move position center
 
 # toggle sticky, only works on floating windows
 bindsym $mod+Shift+s sticky toggle
