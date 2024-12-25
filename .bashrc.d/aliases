@@ -5,7 +5,8 @@ source '/usr/share/bash-completion/completions/git'
 __git_complete dotfiles __git_main
 
 alias make='make -j$(nproc)'
-alias ei='emacs -nw'
+alias ei='TERM=xterm COLORTERM= emacs -nw'
 alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
 alias lt='ls -ltr --color=auto'
+alias lc='clear && ls -l --color=auto'
