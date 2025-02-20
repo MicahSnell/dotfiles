@@ -1,8 +1,10 @@
 #!/bin/bash
 #
-# selects and displays a random background
+# selects and displays a random background, copies it as png to /tmp for i3lock
 #
 # args: none
 
 randBackground="$(find ${HOME}/media/pictures/wallpapers/ -type f | sort -R | tail -n 1)"
-feh --no-fehbg --bg-fill "${randBackground}"
+dimension="$(xrandr --current | awk '/ primary/{print substr($4, 0, 9)}')"
+magick "${randBackground}" -scale "${dimension}"\! /tmp/background.png
+feh --no-fehbg --bg-fill /tmp/background.png

@@ -2,7 +2,7 @@ set $mod Mod4
 
 font pango:SourceCodePro 12
 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- xscreensaver-command --lock
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /tmp/background.png -t -e
 
 # amixer to adjust volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 1%+
