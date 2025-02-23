@@ -160,7 +160,8 @@
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
-(global-set-key [f1] 'ispell-buffer)
+(global-set-key [f1] 'ispell-word)
+(global-set-key [f2] 'ispell-buffer)
 (global-set-key "\C-xa" 'mark-whole-buffer)
 (global-set-key "\C-c\C-d" 'duplicate-line)
 (global-set-key "\C-xn" 'my-next-window)
