@@ -152,8 +152,8 @@ bindsym $mod+p exec joplin-desktop
 # start resource monitor
 bindsym $mod+m exec resources
 
-# start chrome
-bindsym $mod+g exec google-chrome
+# start browser
+bindsym $mod+b exec firefox
 
 # take screenshot using gimp
 bindsym $mod+Shift+g exec gimp --batch '(plug-in-screenshot RUN-INTERACTIVE FALSE 0 0 0 0 0)'
