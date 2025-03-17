@@ -96,6 +96,9 @@
 ;; paste with middle mouse button at cursor rather than mouse
 (setq mouse-yank-at-point t)
 
+;; case sensitive search/replace
+(setq case-fold-search nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -227,6 +230,8 @@
   (c-set-offset 'statement-case-open 0)
   ;; indent preprocessor statements
   (c-set-offset (quote cpp-macro) 0 nil)
+  ;; four spaces on constructor initializer list
+  (c-set-offset 'member-init-intro 4)
   ;; no indent on parenthesis
   (c-set-offset 'substatement-open 0)))
 
@@ -259,6 +264,8 @@
 ;; go mode
 (add-to-list 'load-path "~/.emacs.d/go-mode")
 (autoload 'go-mode "go-mode" "Go editing mode." t)
+(add-hook 'go-mode-hook #'(lambda ()
+  (local-unset-key "\C-c\C-d")))
 
 ;; arduino mode
 (add-to-list 'load-path "~/.emacs.d/arduino-mode")
