@@ -1,8 +1,10 @@
 # aliases sourced by bash
 
 alias dotfiles='git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}'
-source '/usr/share/bash-completion/completions/git'
-__git_complete dotfiles __git_main
+if [[ -f '/usr/share/bash-completion/completions/git' ]]; then
+  source '/usr/share/bash-completion/completions/git'
+  __git_complete dotfiles __git_main
+fi
 
 alias make='make -j$(nproc)'
 alias ei='TERM=xterm COLORTERM= emacs -nw'
