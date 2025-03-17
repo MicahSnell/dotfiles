@@ -1,5 +1,10 @@
 # .bashrc
 
+# do nothing when in eshell or tramp
+if [[ "${TERM}" == "dumb" ]]; then
+  return
+fi
+
 # source bash completion
 if [[ -r /usr/share/bash-completion/bash_completion ]]; then
   . /usr/share/bash-completion/bash_completion
