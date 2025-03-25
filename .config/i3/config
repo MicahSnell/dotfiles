@@ -138,7 +138,7 @@ bindsym $mod+r mode "resize"
 
 # custom keybinds
 # start terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # start emacs
 bindsym $mod+e exec emacs
@@ -162,7 +162,7 @@ bindsym $mod+Shift+g exec gimp --batch '(plug-in-screenshot RUN-INTERACTIVE FALS
 bindsym $mod+i exec loginctl lock-session
 
 # open rarely used commands reference help
-bindsym $mod+Shift+h exec kitty cmd_help
+bindsym $mod+Shift+h exec alacritty -e cmd_help
 
 # screenshot focused window
 bindsym Print exec scrot -u $HOME/media/pictures/screenshots/`date +%Y-%m-%d_%H-%M-%S`.png
@@ -193,9 +193,9 @@ for_window [class="(?i)xcalc"] floating enable
 
 # autostart applications on login
 exec --no-startup-id i3-msg 'workspace 1; exec emacs'
-exec --no-startup-id i3-msg 'workspace 2; exec kitty tmux attach-session'
+exec --no-startup-id i3-msg 'workspace 2; exec alacritty -e tmux attach-session'
 exec --no-startup-id i3-msg 'workspace 3; exec spotify'
 exec --no-startup-id i3-msg 'workspace 4; exec firefox https://mail.google.com/mail/u/0/?ogbl#inbox'
-exec --no-startup-id i3-msg 'workspace 5; exec kitty tmux attach-session'
+exec --no-startup-id i3-msg 'workspace 5; exec alacritty -e tmux attach-session'
 exec --no-startup-id i3-msg 'workspace 6; exec joplin-desktop'
 exec --no-startup-id i3-msg 'workspace 3; workspace 4'

@@ -1,0 +1,45 @@
+[window]
+decorations = "None"
+padding.x = 4
+padding.y = 4
+
+[font]
+normal.family = "Source Code Pro"
+normal.style = "Regular"
+size = 12
+
+[colors]
+primary.foreground = "$FOREGROUND"
+primary.background = "$BACKGROUND"
+
+normal.black = "$COLOR_0"
+normal.red = "$COLOR_1"
+normal.green = "$COLOR_2"
+normal.yellow = "$COLOR_3"
+normal.blue = "$COLOR_4"
+normal.magenta = "$COLOR_5"
+normal.cyan = "$COLOR_6"
+normal.white = "$COLOR_7"
+
+bright.black = "$COLOR_8"
+bright.red = "$COLOR_9"
+bright.green = "$COLOR_10"
+bright.yellow = "$COLOR_11"
+bright.blue = "$COLOR_12"
+bright.magenta = "$COLOR_13"
+bright.cyan = "$COLOR_14"
+bright.white = "$COLOR_15"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style.shape = "Block"
+style.blinking = "On"
+blink_interval = 1000
+blink_timeout = 30
+unfocused_hollow = true
+thickness = 0.1
+
+[mouse]
+hide_when_typing = true

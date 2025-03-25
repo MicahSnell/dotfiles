@@ -39,7 +39,7 @@ export COLOR_15="$(xrdb -get color15)"
 
 # generate config files from template files
 tmplFiles=(
-  "${HOME}/.config/kitty/kitty.conf.template"
+  "${HOME}/.config/alacritty/alacritty.toml.template"
   "${HOME}/.config/rofi/style.rasi.template"
 )
 
