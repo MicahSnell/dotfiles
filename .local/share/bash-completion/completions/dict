@@ -1,0 +1,15 @@
+# extend dict word completion with hunspell dictionary
+
+. /usr/share/bash-completion/completions/dict
+
+_dict() {
+  _comp_cmd_dict "$@"
+
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local word_list="/usr/share/hunspell/en_US.dic"
+  if [[ "$cur" != -* ]] && [[ -r "$word_list" ]]; then
+    COMPREPLY+=( $(compgen -W "$(grep -i ^$cur $word_list | sed 's|/.*||')" -- $cur) )
+  fi
+}
+
+complete -o default -F _dict dict
