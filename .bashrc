@@ -52,8 +52,13 @@ set -o allexport
 . ~/.config/environment.d/user_service_envvars.conf
 set +o allexport
 
-# keybindings, 2 space tabs
+# keybindings, 2 space tabs, set dir colors
 if [ -t 1 ]; then
   bind '"\eh": backward-kill-word'
-  tabs -2
+  if type tabs &>/dev/null; then
+    tabs -2
+  fi
+  if type dircolors &>/dev/null; then
+    . <(dircolors)
+  fi
 fi
