@@ -27,7 +27,7 @@
   (set-frame-font "Source Code Pro 12" nil t))
  ((find-font (font-spec :name "DejaVu Sans Mono"))
   (set-frame-font "DejaVu Sans Mono 12" nil t))
-  ((find-font (font-spec :name "Classic Console"))
+ ((find-font (font-spec :name "Classic Console"))
   (set-frame-font "Classic Console 18" nil t)))
 
 (setq frame-title-format (list "emacs@" system-name ": %b"))
@@ -51,6 +51,10 @@
 
 ;; show line numbers in all modes
 (global-display-line-numbers-mode t)
+
+;; supress the startup area message
+(defun display-startup-echo-area-message ()
+  (message nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; behavior
