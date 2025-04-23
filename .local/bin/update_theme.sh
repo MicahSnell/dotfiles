@@ -17,7 +17,7 @@ sum="$(($((16${BACKGROUND})) + highlight))"
 export BACKGROUND_ALT="$(printf '#%x' ${sum})"
 
 # add it to Xresource data base
-xrdb -merge <(echo "background-alt: ${BACKGROUND_ALT}")
+xrdb -merge <(echo "*.background-alt: ${BACKGROUND_ALT}")
 
 # colors 0 through 15
 export COLOR_0="$(xrdb -get color0)"
