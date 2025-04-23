@@ -1,4 +1,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; setup package.el, add melpa
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+;; fetch package list if not present
+(or (file-exists-p package-user-dir) (package-refresh-contents))
+
+;; ensure selected packages are installed
+(setq package-selected-packages
+      '(arduino-mode
+        go-mode
+        treemacs
+        xresources-theme))
+(package-install-selected-packages)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -15,9 +34,7 @@
 
 ;; load xresources theme if in graphical frame, wombat otherwise
 (if (window-system)
-    (progn
-      (add-to-list 'custom-theme-load-path "~/.emacs.d/xresources-theme")
-      (load-theme 'xresources t))
+    (load-theme 'xresources t)
   (load-theme 'wombat t))
 
 ;; no startup screen, no tool/menu bars, no scroll bars
@@ -119,16 +136,6 @@
   (yank)
   (move-beginning-of-line 1)
   (indent-for-tab-command))
-
-;; load markdown files using impatient-mode
-(defun markdown-html (buffer)
-  (princ (with-current-buffer buffer
-    (format "<!DOCTYPE html><html><title>Impatient Markdown</title>\
-             <xmp theme=\"united\" style=\"display:none;\"> %s  </xmp>\
-             <script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script>\
-             </html>"
-      (buffer-substring-no-properties (point-min) (point-max))))
-  (current-buffer)))
 
 ;; move to the next window, bound to C-xn
 (defun my-next-window ()
@@ -262,25 +269,25 @@
   (setq sh-indentation 2)))
 
 ;; go mode
-(add-to-list 'load-path "~/.emacs.d/go-mode")
-(autoload 'go-mode "go-mode" "Go editing mode." t)
 (add-hook 'go-mode-hook #'(lambda ()
   (local-unset-key "\C-c\C-d")))
 
-;; arduino mode
-(add-to-list 'load-path "~/.emacs.d/arduino-mode")
-(autoload 'arduino-mode "arduino-mode" "Arduino editing mode." t)
+;; treemacs mode
+(add-hook 'treemacs-mode-hook (lambda ()
+  (face-remap-add-relative 'treemacs-hl-line-face nil
+                           :background (x-get-resource "background-alt" ""))
+  (display-line-numbers-mode 0)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; packages
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org mode
+(add-hook 'org-mode-hook #'(lambda ()
+  (local-unset-key "\M-h")
+  (local-set-key (kbd "M-p") 'org-metaup)
+  (local-set-key (kbd "M-n") 'org-metadown)))
 
-(setq package-selected-packages '(impatient-mode))
-
-;; use melpa
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-(package-initialize)
+;; start with treemacs workspace if specified
+(add-hook 'emacs-startup-hook (lambda ()
+  (require 'treemacs)
+  (if (getenv "WORKSPACE")
+      (progn
+        (treemacs-do-switch-workspace (getenv "WORKSPACE"))
+        (treemacs-select-window)))))
